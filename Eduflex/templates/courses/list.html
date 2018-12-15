@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}
+    {% if subject %}
+    {{ subject.title }} courses
+    {% else %}
+    All courses
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="m-5 p-5"></div>
+
+    <!-- Search -->
+
+    <div class="search_section d-flex flex-column align-items-center justify-content-center m-5">
+        <div class="search_background" style="background-image: url({% static 'images/bg2.jpg' %}")></div>
+        <div class="search_content text-center">
+            <h1 class="search_title">Search for your course</h1>
+            <form id="search_form" method="get" class="search_form mt-3" action="{% url 'course_list' %}">
+                <input id="search_form_name" name="q" class="input_field search_form_name" value="{{ request.GET.q }}"type="text" placeholder="Enter A Keyword" required="required" data-error="Course name is required.">
+                <button id="search_submit_button" type="submit" class="search_submit_button trans_200 mb-4" value="Submit">search course</button>
+            </form>
+        </div>
+    </div>
+
+
+           <div class="row">
+            <div class="col-md-3">
+
+                <h2 class="text-center">SCHOOLS</h2>
+                <ul id="modules">
+                    <li {% if not subject %}class="selected"{% endif %}>
+                        <a href="{% url 'course_list' %}">All Subjects</a>
+                    </li><hr>
+                    {% for s in subjects %}
+                    <li {% if subject == s %}class="selected"{% endif %}>
+                        <a href="{% url 'course_list_subject' s.slug %}">
+                            {{ s.title }}
+                            <br><span>{{ s.total_courses }} courses</span>
+                        </a>
+                    </li><hr>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            <div class="col-md-9">
+                <h2 class="text-center">
+                    {% if subject %}
+                        {{ subject.title }} course
+                    {% else %}
+                        ALL COURSES
+                    {% endif %}
+                </h2>
+               <div class="row">
+                    {% for  course in courses %}
+                        <div class="col-sm-6 col-md-4 col-xs-4">
+                            <div class="b-product-plate">
+                                {% with subject=course.subject %}
+                                    <div class="b-product-plate__img">
+                                        <img src="{% if course.image %}{{ course.image.url }} {% else %}{% static 'img/no image.jpg' %}{% endif %}" width='100%'>
+                                    </div>
+                                    <div class="b-product-plate__descr">
+                                        <h6 class="title">
+                                            <small><a href="{% url 'course_list_subject' subject.slug %}">{{ subject }}</a></small>
+                                        </h6>
+                                        <span class="price">
+                                            <h5 class="text-uppercase"><a href="{% url 'course_detail' course.slug %}">{{ course.title }}</a></h5>
+                                            <mark>{{ course.total_modules }}  Modules.</mark> Instructor: <strong>{{ course.owner.username }}</strong>
+                                        </span>
+                                    </div><hr>
+                                {% endwith %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% if user.is_authenticated %}
+                    <p class="text-center pt-3">
+                        <a href="{% url 'course_create' %}" class="btn btn-info ">Create new course</a>
+                    </p>
+                {% endif %}
+                    {% include "pagination.html" %}
+
+            </div>
+                    {% include "subscribe.html" %}
+        </div>
+{% endblock %}

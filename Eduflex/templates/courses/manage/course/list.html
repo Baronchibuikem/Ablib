@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}My Courses{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="m-5 p-5"></div>
+    <h1 class="text-center pb-3">MY COURSES</h1>
+        <div class="row">
+            {% for course in object_list %}
+                <div class="col-sm-6 col-md-3 col-xs-4">
+                    <div class="b-product-plate">
+                        {% with subject=course.subject %}
+                            <div class="b-product-plate__img">
+                                <img src="{% if course.image %}{{ course.image.url }} {% else %}{% static 'img/noImage.jpg' %}{% endif %}" width='100%'>
+                            </div>
+                            <div class="b-product-plate__descr">
+                                <h6 class="title"><small>
+                                    <a href="{% url 'course_list_subject' subject.slug %}">{{ subject }}</a></small>
+                                    </h6>
+                                <span class="price">
+                                    <h5 class="text-uppercase"><a href="{% url 'course_detail' course.slug %}">{{ course.title }}</a></h5>
+                                    <mark>{{ course.total_modules }}  Modules.</mark> Instructor: <strong>{{ course.owner.username }}</strong>
+                                    <p><a href="{% url 'student_course_detail' course.id %}">Access contents</a></p>
+                                </span>
+                            </div>
+                        {% endwith %}
+                        <p>
+                            <small><a href="{% url 'course_edit' course.id %}">Edit Course</a></small>
+                            <small><a href="{% url 'course_delete' course.id %}">Delete Course</a></small>
+                            <small><a href="{% url 'course_module_update' course.id %}" >Edit modules</a></small>
+                            {% if course.modules.count > 0 %}
+                                <a href="{% url 'module_content_list' course.modules.first.id %}">Manage contents</a>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            {% empty %}
+                    <h3><mark>You haven't created any courses yet.</mark></h3>
+                    <h6>To be eligible to create a course, you will need to send your username and a sample of your course to us through ABHubCourses@gmail.com for review,
+                    if it is approved by our team, your account will be granted access to create, edit and delete your courses</h6>
+            {% endfor %}
+        </div >
+        <p class="text-center pt-3">
+            <a href="{% url 'course_create' %}" class="btn btn-info ">Create new course</a>
+        </p>
+</div>
+    {% endblock %}

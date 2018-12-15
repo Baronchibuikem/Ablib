@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load blog_tags %}
+
+{% block title %}LitUp-Blog{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="mb-5 pb-5 mt-5 pt-5"></div>
+<div class="row pb">
+    <div class="col-md-8">
+        {% for post in posts %}
+      <!-- Blog Post -->
+      <div class="card mb-4">
+        <img class="card-img-top" src="{{post.image.url}}" alt="image loading...">
+        <div class="card-body">
+          <h2 class="card-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+          <p class="card-text">{{ post.body|truncatewords:50|linebreaks }}</p>
+          <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+          Posted on {{ post.publish }} by
+          <a href="#">{{ post.author }}</a>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+    <div class="col-md-4 media2 bg-light">
+        {% block sidebar %}
+            {% include "blog/sidebar.html" %}
+        {% endblock %}
+    </div>
+</div>
+    {% include "blog/pagination.html" with page=posts %}
+
+</div>
+{% endblock %}

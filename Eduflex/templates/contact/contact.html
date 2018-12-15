@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block title %}
+    Contact us
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+		<div class="mb-5 pb-5 mt-5 pt-5"></div>
+        <div class="text-center pb">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form|crispy }}
+                {% csrf_token %}
+                <input type="submit" value="Submit request">
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+

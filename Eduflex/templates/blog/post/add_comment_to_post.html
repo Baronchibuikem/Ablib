@@ -1,0 +1,25 @@
+{% extends "accounts/base.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message }}
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+{% else %}
+    <h1>New comment</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Send</button>
+    </form>
+{% endif %}
+{% endblock %}}

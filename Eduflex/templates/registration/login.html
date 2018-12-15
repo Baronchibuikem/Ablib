@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container text-center height">
+    <div class="m-5 p-5"></div>
+    <div class="row justify-content-center my-5 py-5">
+        <div class="col-9">
+            <h1>Log-in</h1>
+            {% if form.errors %}
+                <p>Please, use the following form to log-in or click the registration link to register </p>
+            {% else %}
+                <p>Please, use the following form to log-in:</p>
+            {% endif %}
+            {% if form.errors %}
+                <p>Your username and password didn't match. Please try again.</p>
+            {% endif %}
+
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <p>Your account doesn't have access to this page. To proceed,please login with an account that has access.</p>
+                {% else %}
+                    <p>Please login to see this page.</p>
+                {% endif %}
+            {% endif %}
+
+                <div class="login-form2">
+                    <form action="{% url 'login' %}" method="post">
+                        {{ form|crispy }}
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        <p class="my-3"><input type="submit" value="Log-in"></p>
+                    </form>
+                    <p class="d-flex justify-content-center"><a href="{% url 'password_reset' %}" class="mx-3">Forgotten your password</a>
+                       <a href="{% url 'student_registration' %}" class="mx-3">
+                        Register
+                    </a></p>
+                </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

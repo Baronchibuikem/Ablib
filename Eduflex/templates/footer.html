@@ -1,0 +1,93 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+<div class="container-fluid bg-dark text-white">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+
+                    <div class="footer">
+						<p class="text-white">Join us on </p>
+						<!-- footer social -->
+						<ul class="footer-social">
+							<li><a href="#"><i class="fab fa-facebook text-light"></i></a></li>
+							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fab fa-youtube"></i></a></li>
+						</ul>
+						<!-- /footer social -->
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<ul class="list-links">
+							<li><a href="">Become an Instructor</a></li>
+							<li><a href="#">Blog</a></li>
+							<li><a href="#">Register</a></li>
+							{% if request.user.is_authenticated %}
+							<li><a href="{% url 'manage_course' %}">My Courses</a></li>
+							<li><a href="{% url 'student_course_list' %}">Enrolled</a></li>
+							<li><a href="">Change your password</a></li>
+							<li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+							{% else %}
+							<li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<div class="clearfix visible-sm visible-xs"></div>
+
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<ul class="list-links">
+							<li><a href="{% url 'contact:contact' %}">Contact us</a></li>
+							<li><a href="#">Our Partners</a></li>
+							<li><a href="">How to create a course</a></li>
+							<li><a href="#">FAQ</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<!-- footer subscribe -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<ul class="list-links">
+							<li><a href="">About us</a></li>
+							<li><a href="#">Careers</a></li>
+							<li><a href="">Terms & Conditions</a></li>
+							<li><a href="">Privacy Policy</a></li>
+							<li><a href="#">Billing Policy</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /footer subscribe -->
+			</div>
+			<!-- /row -->
+			<hr>
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12 col-md-offset-2">
+					<!-- footer copyright -->
+					<div class="footer-copyright text-white text-center">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright All rights reserved | This platform is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" class="text-white">AwesomeBaron</a>
+						<!-- Link back to Colorlin't be removed. Template is licensed under CC BY 3.0. -->
+					</div>
+					<!-- /footer copyright -->
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	<!-- /FOOTER -->
+</div>
