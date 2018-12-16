@@ -938,12 +938,6 @@ h2::after{
 	bottom: -10px;
 }
 
-
-
-.form-group {
-    margin: auto !important;
-    width: 30% !important;
-}
 .listi ul{
     list-style: none;
 }

@@ -23,8 +23,10 @@
 			<!-- Logo -->
 			<div class="logo_container">
 				<div class="logo">
-					<img src="{% static 'images/logo.png' %}" alt="">
-					<span>ABlib</span>
+					<a href="{% url 'course_list' %}">
+						<img src="{% static 'images/logo.png' %}" alt="">
+						<span>ABlib</span>
+					</a>
 				</div>
 			</div>
 
@@ -76,7 +78,7 @@
 						<li class="menu_item menu_mm"><a href="{% url 'logout' %}">Logout</a></li>
 					{% else %}
 						<li class="menu_item menu_mm"><a href="{% url 'login' %}">Login</a></li>
-						<li class="menu_item menu_mm"><a href="{% url 'student_registration' %">Register</a></li>
+						<li class="menu_item menu_mm"><a href="{% url 'student_registration' %}">Register</a></li>
 					{% endif %}
 				</ul>
 
