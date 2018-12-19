@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Subject, Course, Module, Subscription
 from django.db import models
-from pagedown.widgets import AdminPagedownWidget
+#from pagedown.widgets import AdminPagedownWidget
 
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):
@@ -13,7 +13,7 @@ class ModuleInline(admin.StackedInline):
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    formfield_overrides = {models.TextField:{'widget': AdminPagedownWidget}}
+    #formfield_overrides = {models.TextField:{'widget': AdminPagedownWidget}}
     list_display = ['title', 'subject', 'created', 'image']
     list_filter = ['created', 'subject']
     search_fields = ['title', 'overview']
