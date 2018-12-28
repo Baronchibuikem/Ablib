@@ -35,7 +35,11 @@
                        <a href="{% url 'student_registration' %}" class="mx-3">
                         Register
                     </a></p>
+                    <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
                 </div>
+            <p><strong>-- OR --</strong></p>
+            <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+
         </div>
     </div>
 
