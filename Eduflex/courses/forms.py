@@ -3,7 +3,8 @@ from django.forms.models import inlineformset_factory
 from .models import Course, Module,Subscription
 
 
-ModuleFormSet = inlineformset_factory(Course, Module, fields=['title', 'description'], extra=2, can_delete=True)
+ModuleFormSet = inlineformset_factory(Course, Module, fields=['title', 'description'],  extra=3, can_delete=True)
+
 
 
 class SubscriptionForm(forms.ModelForm):
@@ -11,8 +12,7 @@ class SubscriptionForm(forms.ModelForm):
         model = Subscription
         fields = ['your_email',]
 
-"""
-This is the ModuleFormSet formset. We build it using the inlineformset_factory()
+"""This is the ModuleFormSet formset. We build it using the inlineformset_factory()
 function provided by Django. Inline formsets is a small abstraction on top of formsets
 that simplifies working with related objects. This function allows us to build a model
 formset dynamically for the Module objects related to a Course object.
@@ -25,5 +25,4 @@ the formset.
 
 • can_delete: If you set this to True, Django will include a Boolean field for
 each form that will be rendered as a checkbox input. It allows you to mark
-the objects you want to delete.
-"""
+the objects you want to delete."""

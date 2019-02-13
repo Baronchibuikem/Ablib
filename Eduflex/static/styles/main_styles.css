@@ -1095,7 +1095,11 @@ textarea.input {
 }
 
 .height{
-    min-height:100vh;
+    min-height:50vh;
+}
+
+.height2{
+    min-height:50vh;
 }
 
 .list-links li>a:hover, .list-links li>a:focus, .list-links li.active>a {

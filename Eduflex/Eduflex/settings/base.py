@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'students',
     'contact',
     #'blog',
-    'pagedown',
+    #'pagedown',
     'crispy_forms',
     'social_django',
     'django.contrib.admin',

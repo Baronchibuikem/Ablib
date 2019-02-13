@@ -8,15 +8,88 @@
 {% block content %}
 <div class="container">
     <div class="m-5 p-5"></div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center text-dark">
         <div class="col-9">
             <h1 class="text-center text-uppercase m-3"> Sign up </h1><hr>
                 <p class="text-center">Enter your details to create an account:</p>
-                <form action="" method="post">
-                    {{ form|crispy }}
-                    {% csrf_token %}
-                    <p class="text-center"><input type="submit" value="Create my account"></p>
-                </form>
+
+            <form action="" method="post">
+                <div class="row">
+                    <div id="div_id_first_name" class="form-group col-md-6">
+                        <label for="id_first_name" class="col-form-label  requiredField">
+                            First name<span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="text" name="first_name" maxlength="30" class="textinput textInput form-control" required="" id="id_first_name">
+                        </div>
+                    </div>
+                    <div id="div_id_last_name" class="form-group col-md-6">
+                        <label for="id_last_name" class="col-form-label  requiredField">
+                            Last name<span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="text" name="last_name" maxlength="30" class="textinput textInput form-control" required="" id="id_last_name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="div_id_username" class="form-group col-md-4">
+                        <label for="id_username" class="col-form-label  requiredField">
+                            Username<span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="text" name="username" maxlength="150" autofocus="" class="textinput textInput form-control" required="" id="id_username">
+                            <small id="hint_id_username" class="form-text text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
+                        </div>
+                    </div>
+                    <div id="div_id_location" class="form-group col-md-4 pb-4">
+                        <label for="id_location" class="col-form-label  requiredField">
+                            Location<span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="text" name="location" maxlength="30" class="textinput textInput form-control" required="" id="id_location">
+                        </div>
+                    </div>
+                    <div id="div_id_email" class="form-group col-md-4 pb-3">
+                        <label for="id_email" class="col-form-label  requiredField">
+                            Email<span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="email" name="email" maxlength="254" class="emailinput form-control" required="" id="id_email">
+                                <small id="hint_id_email" class="form-text text-muted">Required. Inform a valid email address.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="div_id_password1" class="form-group col-md-6 mt-3">
+                        <label for="id_password1" class="col-form-label  requiredField">
+                            Password<span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="password" name="password1" class="textinput textInput form-control" required="" id="id_password1">
+                            <small id="hint_id_password1" class="form-text text-muted">
+                                <ul>
+                                    <li>Your password can't be too similar to your other personal information.</li>
+                                    <li>Your password must contain at least 8 characters.</li>
+                                    <li>Your password can't be a commonly used password.</li>
+                                    <li>Your password can't be entirely numeric.</li>
+                                </ul>
+                            </small>
+                        </div>
+                    </div>
+                    <div id="div_id_password2" class="form-group col-md-6 pb-5">
+                        <label for="id_password2" class="col-form-label  requiredField">
+                            Password confirmation<span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="password" name="password2" class="textinput textInput form-control" required="" id="id_password2">
+                                <small id="hint_id_password2" class="form-text text-muted">Enter the same password as before, for verification.</small>
+                        </div>
+                    </div>
+                </div>
+                        {% csrf_token %}
+                        <p class="text-center"><input type="submit" value="Create my account"></p>
+            </form>
         </div>
     </div>
 </div>

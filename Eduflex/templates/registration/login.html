@@ -6,7 +6,7 @@
     <div class="m-5 p-5"></div>
     <div class="row justify-content-center my-5 py-5">
         <div class="col-9">
-            <h1>Log-in</h1>
+            <h1> <strong>Log-in</strong></h1>
             {% if form.errors %}
                 <p>Please, use the following form to log-in or click the registration link to register </p>
             {% else %}
@@ -24,24 +24,40 @@
                 {% endif %}
             {% endif %}
 
-                <div class="login-form2">
-                    <form action="{% url 'login' %}" method="post">
-                        {{ form|crispy }}
-                        {% csrf_token %}
-                        <input type="hidden" name="next" value="{{ next }}" />
-                        <p class="my-3"><input type="submit" value="Log-in"></p>
-                    </form>
-                    <p class="d-flex justify-content-center"><a href="{% url 'password_reset' %}" class="mx-3">Forgotten your password</a>
-                       <a href="{% url 'student_registration' %}" class="mx-3">
-                        Register
-                    </a></p>
-                    <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
-                </div>
-            <p><strong>-- OR --</strong></p>
+            <div class="login-form2 text-dark">
+                <form action="/accounts/login/" method="post">
+                    <div id="div_id_username" class="form-group col-md-4 mx-auto">
+                        <label for="id_username" class="col-form-label  requiredField">
+                            Username<span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="text" name="username" autofocus="" class="textinput textInput form-control" required="" id="id_username">
+                        </div>
+                    </div>
+                    <div id="div_id_password" class="form-group col-md-4 mx-auto">
+                        <label for="id_password" class="col-form-label  requiredField">
+                            Password<span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="password" name="password" class="textinput textInput form-control" required="" id="id_password">
+                        </div>
+                    </div>
+                    <input type="hidden" name="csrfmiddlewaretoken" value="t0MbNcTFMqJQ8ItVp59Z8dXKJ9zIbbndg2WLzDNuFTrH2MqO7qVaQWuh6t7ORPNE">
+                    <input type="hidden" name="next" value="">
+                    {% csrf_token %}
+                    <p class="my-3">
+                        <input type="submit" value="SUBMIT" class=" mx-auto">
+                    </p>
+                </form>
+                <p class="d-flex justify-content-center"><a href="/accounts/password_reset/" class="mx-3">Forgotten your password</a>
+                   <a href="/students/register/" class="mx-3">Register</a>
+                </p>
+                <a href="/oauth/login/facebook/">Login with Facebook</a>
+                 <p><strong>-- OR --</strong></p>
             <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
 
+            </div>
         </div>
     </div>
-
 </div>
 {% endblock %}
